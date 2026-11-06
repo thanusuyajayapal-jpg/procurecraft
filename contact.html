@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ProcureCraft | Contact Us - Get in Touch with Sourcing Experts</title>
+     <link rel="icon" type="image/jpeg" href="img/trade (2).jpg"> 
+
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration for Dark Mode & Custom Colors -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#93c5fd', // Light blue highlight
+              DEFAULT: '#2563eb', // Royal blue main
+              dark: '#1d4ed8', // Deeper blue for hover states
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body.menu-open { overflow: hidden; }
+    .mobile-drawer { right: -100%; transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .mobile-drawer.active { right: 0; }
+    [dir="rtl"] .mobile-drawer { right: auto; left: -100%; }
+    [dir="rtl"] .mobile-drawer.active { left: 0; right: auto; }
+    .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .mobile-dropdown-content.active { max-height: 300px; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-zinc-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+  <!-- ================= 1. NAVBAR & HAMBURGER MENU ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="index.html" class="group flex items-center gap-3 focus:outline-none">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-900/25 group-hover:scale-105 transition-all">
+            <i class="fa-solid fa-globe text-xl"></i>
+          </div>
+          <div class="flex flex-col text-left rtl:text-right">
+            <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+              Procure Craft
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links with File Redirects -->
+      <div class="hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-sm xl:text-base">
+
+        <!-- Home Dropdown Container -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-colors py-2 focus:outline-none">
+            <span>Home</span>
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute start-0 mt-0 w-52 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 py-2 z-50">
+            <a href="index.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-transparent"></span>
+              <span>Home 1</span>
+            </a>
+            <a href="home2.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-transparent"></span>
+              <span>Home 2</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="about.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+        <a href="services.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Services</a>
+        <a href="safetrade.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Safe Trade</a>
+        <a href="pricing.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pricing</a>
+        <a href="contact.html" class="text-blue-600 dark:text-blue-400 font-bold transition-colors">Contact</a>
+        
+        <!-- Dashboard Dropdown Container -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-colors py-2 focus:outline-none">
+            <span>Dashboard</span>
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute start-0 mt-0 w-56 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 py-2 z-50">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span>Admin Dashboard</span>
+            </a>
+            <a href="user-dashboard.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              <span>User Dashboard</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Utilities: Dark Mode, RTL, Portal Login Button -->
+      <div class="hidden lg:flex items-center gap-3 shrink-0">
+        <button id="darkModeToggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-slate-300 transition-colors">
+          <i class="fa-solid fa-moon text-lg"></i>
+        </button>
+        <button id="rtlToggle" aria-label="Toggle RTL Layout" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors text-slate-700 dark:text-slate-300">
+          RTL
+        </button>
+        <a href="login.html" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-bold rounded-xl shadow-md transition-all">
+          LOGIN
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="lg:hidden flex items-center gap-2">
+        <button id="hamburgerBtn" aria-label="Open Menu" class="p-2.5 rounded-xl text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 focus:outline-none z-50 relative">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998] opacity-0 invisible transition-all duration-300" id="mobileOverlay"></div>
+    
+    <div class="mobile-drawer fixed top-0 w-[85%] max-w-[400px] h-screen bg-white dark:bg-zinc-950 z-[1001] p-6 pt-20 overflow-y-auto shadow-2xl" id="mobileMenu">
+      <button class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-full text-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors rtl:right-auto rtl:left-5" id="closeMenuBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <ul class="flex flex-col gap-3 list-none m-0 p-0">
+        <!-- Home Submenu -->
+                
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="index.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Home 1</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="home2.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Home 2</a></li>
+
+
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="about.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">About</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="services.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Services</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="safetrade.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Safe Trade</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="pricing.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Pricing</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="contact.html" class="block py-2.5 text-base font-bold text-blue-600 dark:text-blue-400">Contact</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="admin-dashboard.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Admin Dashboard</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="user-dashboard.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">User Dashboard</a></li>
+
+        <li class="pt-6">
+          <a href="login.html" class="block w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center shadow-lg transition-all mb-3"> LOGIN</a>
+          <div class="flex gap-3">
+            <button id="mobileDarkModeToggle" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 font-semibold text-sm text-slate-700 dark:text-slate-300">🌙 Dark Mode</button>
+            <button id="mobileRtlToggle" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 font-semibold text-sm text-slate-700 dark:text-slate-300">RTL Toggle</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ================= 2. HERO BANNER SECTION (Customized for Contact Us) ================= -->
+  <section class="relative bg-slate-950 text-white overflow-hidden min-h-[580px] lg:min-h-[640px] flex items-center">
+    <!-- Updated Hero Image: Global Support Desk & Corporate Communication -->
+    <div class="absolute inset-0 opacity-25 bg-cover bg-center filter brightness-75" style="background-image: url('img/trade (4).jpg');"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-blue-950/50"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col items-start justify-center w-full">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-900/80 text-blue-200 border border-blue-500/40 mb-6 backdrop-blur-sm shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span>ProcureCraft Contact • 24/7 Global Support & Sourcing Desk</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight mb-6 text-white">
+        Get in Touch With Our Global Procurement Specialists.
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed font-normal">
+        Have questions about supplier audits, custom RFQs, or escrow protocols? Reach out to our headquarters or schedule a consultation with our trade experts today.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <a href="#contactForm" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-xl shadow-xl text-slate-950 bg-blue-400 hover:bg-blue-300 transition-all transform hover:-translate-y-0.5 text-center">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Send Us a Message</span>
+        </a>
+        <a href="services.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-xl text-slate-100 border-2 border-blue-400/40 hover:bg-blue-900/40 transition-all text-center">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Explore Services</span>
+        </a>
+      </div>
+
+      <!-- Trust Pillars Ribbon -->
+      <div class="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-xs font-semibold text-slate-300">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-circle-check text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">100% Vetted</strong> Rigorous ISO & ESG checks</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-chart-line text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Cost Optimization</strong> Avg 18% client savings</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-earth-americas text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Global Network</strong> Active in 45+ countries</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-gauge-high text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Rapid RFQ Turnaround</strong> Quotes within 48 hours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CONTACT SECTION 1: INQUIRY FORM ================= -->
+  <section id="contactForm" class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <span>Send a Message</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Start Your Sourcing Audit Today.
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            Fill out the inquiry form and our senior supply chain consultants will review your requirements and respond within 24 business hours.
+          </p>
+          <ul class="space-y-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Free initial feasibility assessment</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Strict NDA & confidentiality guarantee</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Direct access to bilingual factory auditors</li>
+          </ul>
+        </div>
+        <form onsubmit="event.preventDefault(); showCustomModal('Your message has been sent successfully! We will get back to you soon.');" class="bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 p-8 rounded-2xl shadow-xl space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Full Name</label>
+              <input type="text" placeholder="John Doe" required class="w-full px-4 py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:border-blue-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Corporate Email</label>
+              <input type="email" placeholder="john@company.com" required class="w-full px-4 py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:border-blue-600">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Inquiry Type</label>
+            <select class="w-full px-4 py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:border-blue-600">
+              <option>Factory Sourcing & Vetting</option>
+              <option>Safe Trade Escrow Inquiry</option>
+              <option>Enterprise Pricing & Plans</option>
+              <option>General Support Desk</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Message / Specifications</label>
+            <rows="4" placeholder="Describe your manufacturing or procurement needs..." required class="w-full px-4 py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:border-blue-600"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center shadow transition-all">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CONTACT SECTION 2: GLOBAL OFFICES ================= -->
+  <section class="py-20 bg-slate-50 dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-800">
+          <i class="fa-solid fa-building"></i>
+          <span>Global Presence</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Our Regional Headquarters & Hubs
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          Visit or contact our regional offices stationed across primary international trade corridors.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-earth-americas"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">New York (HQ)</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            Suite 400, Commerce Tower<br>Financial District, New York, NY 10005<br>Phone: +1 (800) 555-PROC
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-earth-europe"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Frankfurt Hub</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            Tower 185, Friedrich-Ebert-Anlage 35<br>60327 Frankfurt am Main, Germany<br>Phone: +49 69 1234 5678
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-earth-asia"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Shenzhen Hub</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            Ping An Financial Center, 5033 Yitian Rd<br>Futian District, Shenzhen, China<br>Phone: +86 755 8888 9999
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CONTACT SECTION 3: INTERACTIVE MAP ================= -->
+  <section class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Interactive Location</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Find Our Global Headquarters
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          Located in the heart of the Financial District, New York City. Stop by for an in-person procurement consultation.
+        </p>
+      </div>
+      <div class="relative w-full h-[450px] rounded-3xl overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-xl">
+        <!-- Mock Interactive Map iframe with CSS filter matching theme -->
+        <iframe title="HQ Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.463282276587!2d-74.0133869234796!3d40.70731037138721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1b8c1c5e1f%3A0x403b53c7c25c276a!2sFinancial%20District%2C%20New%20York%2C%20NY%2010005!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" class="w-full h-full border-0 filter dark:invert dark:hue-rotate-180 dark:contrast-125" allowfullscreen="" loading="lazy"></iframe>
+        <div class="absolute bottom-6 left-6 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-slate-200 dark:border-zinc-800 max-w-xs space-y-1">
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">ProcureCraft Global HQ</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Suite 400, Commerce Tower, NY 10005</p>
+          <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline pt-1">
+            <span>Get Directions &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CONTACT SECTION 4: DEPARTMENT CONTACTS ================= -->
+  <section class="py-20 bg-slate-50 dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-800">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Direct Desks</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Connect Directly With Department Heads
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          Route your specific inquiry to the right specialist team for rapid assistance.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-handshake-angle"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Vendor Partnerships</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            For factories and suppliers looking to join our pre-vetted global network.
+          </p>
+          <a href="mailto:vendors@procurecraft.com" class="inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+            <span>vendors@procurecraft.com &rarr;</span>
+          </a>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-vault"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Escrow & Billing Desk</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            For questions regarding milestone payments, invoices, and Safe Trade escrow releases.
+          </p>
+          <a href="mailto:billing@procurecraft.com" class="inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+            <span>billing@procurecraft.com &rarr;</span>
+          </a>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-newspaper"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Press & Media Inquiries</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            For global tariff reports, press releases, and interview requests with our executives.
+          </p>
+          <a href="mailto:press@procurecraft.com" class="inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+            <span>press@procurecraft.com &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section><!-- ================= CONTACT SECTION 5: SUPPORT HOURS ================= -->
+  <section class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+            <i class="fa-solid fa-clock"></i>
+            <span>Availability</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            We Are Here When Your Supply Chain Never Sleeps.
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            International trade happens across all time zones. That is why our regional support hubs provide staggered coverage to ensure your inquiries are handled instantly.
+          </p>
+          <div class="p-4 rounded-2xl bg-blue-50 dark:bg-zinc-800 border border-blue-200 dark:border-zinc-700 text-xs font-semibold text-blue-700 dark:text-blue-300">
+            * Enterprise clients receive dedicated 24/7 emergency hotline access through their client dashboard.
+          </div>
+        </div>
+        <div class="bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 p-8 rounded-2xl shadow-xl space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Standard Desk Schedule</h3>
+          <ul class="space-y-3 text-sm font-semibold text-slate-700 dark:text-slate-300 divide-y divide-slate-200 dark:divide-zinc-800">
+            <li class="flex justify-between pt-2">
+              <span>Monday – Friday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">8:00 AM – 7:00 PM EST</span>
+            </li>
+            <li class="flex justify-between pt-3">
+              <span>Saturday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">9:00 AM – 3:00 PM EST</span>
+            </li>
+            <li class="flex justify-between pt-3">
+              <span>Sunday:</span>
+              <span class="font-bold text-blue-600 dark:text-blue-400">Emergency Desk Only</span>
+            </li>
+          </ul>
+          <a href="tel:+18005557762" class="block w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center shadow transition-all mt-4">
+            Call Support Hotline Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. FOOTER SECTION ================= -->
+  <footer class="bg-white dark:bg-zinc-950 text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand Info -->
+        <div class="space-y-4 sm:col-span-2 lg:col-span-1">
+          <a href="index.html" class="group inline-flex items-center gap-3 focus:outline-none">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+              <i class="fa-solid fa-globe text-xl"></i>
+            </div>
+            <div class="flex flex-col text-left rtl:text-right">
+              <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+                Procure Craft
+              </span>
+            </div>
+          </a>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-relaxed">
+            Your trusted global procurement and vendor sourcing partner. Optimizing supply chains, mitigating risk, and driving bottom-line growth.
+          </p>
+          <div class="pt-1 flex items-center space-x-3">
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-slate-300 hover:bg-blue-600 hover:text-white transition-colors">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-slate-300 hover:bg-blue-600 hover:text-white transition-colors">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Navigation</h3>
+          <ul class="space-y-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <li><a href="index.html" class="hover:text-blue-600 transition-colors">Home 1</a></li>
+            <li><a href="home2.html" class="hover:text-blue-600 transition-colors">Home 2</a></li>
+            <li><a href="about.html" class="hover:text-blue-600 transition-colors">About Us</a></li>
+            <li><a href="services.html" class="hover:text-blue-600 transition-colors">Sourcing Services</a></li>
+            <li><a href="safetrade.html" class="hover:text-blue-600 transition-colors">Safe Trade</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-600 transition-colors">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Office Location Partition -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Global Headquarters</h3>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+            Suite 400, Commerce Tower<br>
+            Financial District<br>
+            New York, NY 10005
+          </p>
+          <a href="contact.html" class="inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+            <span>Schedule Consultation &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Operating Hours Partition -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Support Hours</h3>
+          <ul class="space-y-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <li class="flex justify-between">
+              <span>Mon - Fri:</span>
+              <span class="font-bold text-slate-900 dark:text-white">8:00 AM – 7:00 PM EST</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Saturday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">9:00 AM – 3:00 PM EST</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Sunday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">Emergency Desk</span>
+            </li>
+          </ul>
+          <div class="mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
+            * 24/7 client portal desk available for enterprise accounts.
+          </div>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Procurement Insights</h3>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Subscribe to our monthly supply chain trends and global supplier tariff reports.</p>
+          <form onsubmit="event.preventDefault(); showCustomModal('Subscribed to procurement insights successfully!');" class="space-y-2">
+            <input type="email" placeholder="corporate@company.com" required class="w-full px-3 py-2 text-sm font-medium bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-600">
+            <button type="submit" class="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-colors shadow">
+              Get Industry Report
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-slate-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 space-y-4 sm:space-y-0 text-center sm:text-left">
+        <p>&copy; 2026 ProcureCraft Procurement & Vendor Sourcing Agency. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="case-studies.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Case Studies</a>
+          <a href="privacy.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Privacy Policy</a>
+          <a href="contact.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Notification Modal -->
+  <div id="customModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-900 dark:text-slate-100 rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-2xl text-center space-y-4">
+      <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-md">
+        <i class="fa-solid fa-check text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white">Notice</h3>
+      <p id="modalMessage" class="text-sm font-semibold text-slate-600 dark:text-slate-300">Action completed successfully.</p>
+      <div class="pt-2">
+        <button onclick="closeCustomModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow transition-colors">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dark Mode
+      const html = document.documentElement;
+      const darkModeBtns = [document.getElementById('darkModeToggle'), document.getElementById('mobileDarkModeToggle')];
+
+      const setDarkMode = (isDark) => {
+        if (isDark) {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        if (darkModeBtns[0]) darkModeBtns[0].innerHTML = isDark ? '<i class="fa-solid fa-sun text-lg"></i>' : '<i class="fa-solid fa-moon text-lg"></i>';
+        if (darkModeBtns[1]) darkModeBtns[1].textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      };
+
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setDarkMode(true);
+      } else {
+        setDarkMode(false);
+      }
+
+      darkModeBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', () => setDarkMode(!html.classList.contains('dark')));
+      });
+
+      // 2. RTL Layout Toggle
+      const rtlBtns = [document.getElementById('rtlToggle'), document.getElementById('mobileRtlToggle')];
+      const setRTL = (isRTL) => {
+        html.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+        rtlBtns.forEach(btn => {
+          if (btn) btn.textContent = isRTL ? 'LTR' : 'RTL';
+        });
+      };
+
+      if (localStorage.getItem('dir') === 'rtl') setRTL(true);
+
+      rtlBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', () => setRTL(html.getAttribute('dir') !== 'rtl'));
+      });
+
+      // 3. Mobile Drawer & Overlay
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+      const toggleMenu = (open) => {
+        if (open) {
+          mobileMenu.classList.add('active');
+          mobileOverlay.classList.remove('opacity-0', 'invisible');
+          mobileOverlay.classList.add('opacity-100', 'visible');
+          document.body.classList.add('menu-open');
+        } else {
+          mobileMenu.classList.remove('active');
+          mobileOverlay.classList.add('opacity-0', 'invisible');
+          mobileOverlay.classList.remove('opacity-100', 'visible');
+          document.body.classList.remove('menu-open');
+        }
+      };
+
+      hamburgerBtn?.addEventListener('click', () => toggleMenu(true));
+      closeMenuBtn?.addEventListener('click', () => toggleMenu(false));
+      mobileOverlay?.addEventListener('click', () => toggleMenu(false));
+
+      // Mobile Accordion Dropdowns
+      document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-dropdown');
+          const content = document.getElementById(targetId);
+          const icon = this.querySelector('fa-chevron-down, i');
+          
+          if (content) {
+            content.classList.toggle('active');
+            if (icon) {
+              icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : '';
+            }
+          }
+        });
+      });
+    });
+
+    function showCustomModal(msg) {
+      const modal = document.getElementById('customModal');
+      document.getElementById('modalMessage').textContent = msg;
+      modal.classList.remove('hidden');
+    }
+
+    function closeCustomModal() {
+      document.getElementById('customModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

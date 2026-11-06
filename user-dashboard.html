@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProcureCraft - Client User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+       <link rel="icon" type="image/jpeg" href="img/trade (2).jpg"> 
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: {
+                        semibold: '500',
+                        bold: '600',
+                        extrabold: '800',
+                        black: '900'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === RESET & CORE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* === THEME VARIABLES === */
+        :root {
+            --bg-color: #FAFAFA;
+            --bg-secondary: #F0F9FF;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --accent-color: #2563EB; 
+            --accent-dark: #1D4ED8;
+            --border-color: #E2E8F0;
+            --sidebar-bg: #FFFFFF;
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent-color: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --border-color: #334155;
+            --sidebar-bg: #1E293B;
+        }
+
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+        /* === BUTTONS DESIGN SYSTEM === */
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 9999px;
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            font-weight: 800;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        .icon-btn:hover {
+            background: var(--accent-color);
+            color: #fff !important;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            min-height: 44px;
+            box-sizing: border-box;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border-radius: 9999px;
+            border: 1.5px solid transparent;
+            text-decoration: none;
+            line-height: 1.25;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-solid {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: #FFFFFF !important;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.42);
+            filter: brightness(1.05);
+            color: #FFFFFF !important;
+        }
+
+        .btn-outline {
+            background: var(--bg-card);
+            color: var(--text-main) !important;
+            border-color: var(--border-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+        body.dark-mode .btn-outline {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+        }
+        .btn-outline:hover {
+            background: var(--accent-color) !important;
+            color: #FFFFFF !important;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+        }
+
+        /* DASHBOARD LAYOUT */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 50;
+            flex-shrink: 0;
+        }
+        [dir="rtl"] .sidebar {
+            border-right: none;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            min-width: 0;
+        }
+        .topbar {
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            background-color: var(--sidebar-bg);
+            flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+            .topbar { padding: 0 24px; }
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 16px;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .content-area { padding: 24px; }
+        }
+        @media (min-width: 1024px) {
+            .content-area { padding: 32px; }
+        }
+
+        /* MOBILE & TABLET DRAWER */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(2px);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 1023px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                height: 100vh;
+                transform: translateX(-100%);
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+            [dir="rtl"] .sidebar {
+                left: auto;
+                right: 0;
+                transform: translateX(100%);
+                box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+            .sidebar.open {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* SIDEBAR LINKS */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        [dir="rtl"] .sidebar-link {
+            border-left: none;
+            border-right: 3px solid transparent;
+        }
+        .sidebar-link:hover {
+            background-color: var(--bg-secondary);
+            color: var(--accent-color);
+        }
+        .sidebar-link.active {
+            color: var(--accent-color);
+            background-color: var(--bg-secondary);
+            border-left-color: var(--accent-color);
+        }
+        [dir="rtl"] .sidebar-link.active {
+            border-right-color: var(--accent-color);
+        }
+
+        /* CARDS */
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; min-width: 580px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        [dir="rtl"] th, [dir="rtl"] td { text-align: right; }
+        th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        td { font-size: 13px; color: var(--text-main); font-weight: 500; }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .status-active { background: rgba(37, 99, 235, 0.1); color: #2563EB; }
+        .status-pending { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+        .status-error { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        
+        /* TABS */
+        .tab-pane { display: none; animation: fadeIn 0.3s ease; width: 100%; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+
+<body>
+
+    <!-- MOBILE BACKDROP OVERLAY -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <!-- LOGO HEADER -->
+        <div class="h-[70px] flex items-center justify-between px-6 border-b border-[var(--border-color)] shrink-0">
+            <a href="index.html" class="group flex items-center gap-3 focus:outline-none" style="text-decoration: none;">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-900/25 group-hover:scale-105 transition-all shrink-0">
+                    <i class="fa-solid fa-globe text-xl"></i>
+                </div>
+                <div class="flex flex-col text-left rtl:text-right">
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--text-main)] leading-none">
+                        Procure Craft
+                    </span>
+                </div>
+            </a>
+            <!-- CLOSE BUTTON ON MOBILE/TABLET -->
+            <button id="sidebar-close-btn" class="icon-btn lg:hidden ml-auto" aria-label="Close sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 py-6 space-y-1 overflow-y-auto">
+            <a href="#" class="sidebar-link active" data-tab="tab-dashboard"><i class="fas fa-home w-5 text-center"></i> Client Overview</a>
+            <a href="#" class="sidebar-link" data-tab="tab-projects"><i class="fas fa-boxes-stacked w-5 text-center"></i> Sourcing Projects</a>
+            <a href="#" class="sidebar-link" data-tab="tab-rfq"><i class="fas fa-file-invoice-dollar w-5 text-center"></i> Active RFQs</a>
+            <a href="#" class="sidebar-link" data-tab="tab-escrow"><i class="fas fa-vault w-5 text-center"></i> Escrow Vault</a>
+            <a href="#" class="sidebar-link" data-tab="tab-support"><i class="fas fa-headset w-5 text-center"></i> Support Desk</a>
+            <a href="#" class="sidebar-link" data-tab="tab-settings"><i class="fas fa-gear w-5 text-center"></i> Account Settings</a>
+        </div>
+
+        <div class="p-6 border-t border-[var(--border-color)]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--accent-color)] flex items-center justify-center text-white font-bold shrink-0">
+                    MV
+                </div>
+                <div class="min-w-0">
+                    <h4 class="font-bold text-sm text-[var(--text-main)] truncate">Marcus Vance</h4>
+                    <p class="text-xs text-[var(--text-muted)] truncate">Apex Industrial COO</p>
+                </div>
+            </div>
+            <a href="login.html" class="btn btn-outline w-full !py-2.5 !text-xs !normal-case hover:!bg-red-50 hover:!text-red-600 hover:!border-red-300 dark:hover:!bg-red-950/30 dark:hover:!text-red-400 mt-4">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="flex items-center gap-3 min-w-0">
+                <!-- HAMBURGER BUTTON (VISIBLE ONLY ON MOBILE & TABLET) -->
+                <button id="hamburger-btn" class="icon-btn lg:hidden" aria-label="Open sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2 class="text-base sm:text-xl font-bold text-[var(--text-main)] truncate">Client Command Center</h2>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                <button id="theme-toggle-desktop" class="icon-btn" title="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="theme-icon-desktop"></i>
+                </button>
+                <button id="rtl-btn" class="icon-btn" title="Toggle LTR/RTL">
+                    LTR
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+            <div id="tab-dashboard" class="tab-pane active">
+                <!-- STATS GRID -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8 w-full">
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-blue-100 text-blue-600 dark:bg-blue-900/30">
+                            <i class="fas fa-boxes-stacked"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Active Projects</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">4 Sourcing</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-blue-100 text-blue-600 dark:bg-blue-900/30">
+                            <i class="fas fa-vault"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Escrow Balance</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">$125,000</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Quality Inspection</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">Passed 100%</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-amber-100 text-amber-600 dark:bg-amber-900/30">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Pending RFQs</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">2 Quotes</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHARTS & TABLES -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+                    <!-- CONTENT SECTION -->
+                    <div class="lg:col-span-2 bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] min-w-0">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg">Project Milestone Updates</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 md:p-5 border border-blue-200 dark:border-blue-900/50 rounded-xl bg-blue-50 dark:bg-blue-900/10 flex items-start gap-4">
+                                <i class="fas fa-ship text-blue-500 text-xl mt-1 shrink-0"></i>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-bold text-blue-700 dark:text-blue-400 text-sm md:text-base">Container #PC-8842 Dispatched</h4>
+                                    <p class="text-xs md:text-sm text-blue-600 dark:text-blue-300 mt-1">Pre-shipment quality audit passed successfully at Shenzhen Manufacturing Hub. Estimated arrival at NY Port: Nov 18, 2026.</p>
+                                    <button class="btn btn-outline !py-1.5 !px-3.5 !text-xs !normal-case !bg-blue-100 dark:!bg-blue-900/40 !text-blue-700 dark:!text-blue-300 !border-blue-200 dark:!border-blue-800 hover:!bg-blue-200 hover:!text-blue-800 hover:!border-blue-300 mt-3">View Tracking Manifest</button>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-5 border border-[var(--border-color)] rounded-xl bg-[var(--bg-secondary)] flex items-start gap-4">
+                                <i class="fas fa-file-contract text-[var(--text-muted)] text-xl mt-1 shrink-0"></i>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-bold text-[var(--text-main)] text-sm md:text-base">Escrow Milestone Released</h4>
+                                    <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">Milestone #2 installment of $45,000 successfully disbursed from vault following successful tooling test.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                <button class="btn btn-solid w-full !py-3 !text-xs md:!text-sm flex items-center justify-center gap-2 !normal-case">
+                                    <i class="fas fa-plus"></i> Request New Sourcing Audit
+                                </button>
+                                <button class="btn btn-outline w-full !py-3 !text-xs md:!text-sm flex items-center justify-center gap-2 !normal-case">
+                                    <i class="fas fa-vault"></i> Access Escrow Vault
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RECENT ACTIVITY -->
+                    <div class="bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] min-w-0">
+                        <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg mb-6">Activity Timeline</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-[var(--accent-color)] mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">Inspection report uploaded</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Shenzhen Hub Inspector #14</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">RFQ quote received</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Component Batch #902</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">Yesterday</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-orange-500 mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">Support ticket answered</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Customs clearance liaison</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">2 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLE WITH HORIZONTAL SCROLL FOR SMALL SCREENS -->
+                <div class="mt-6 md:mt-8 bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] w-full">
+                    <div class="flex justify-between items-center mb-4 md:mb-6">
+                        <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg">Your Active Sourcing Orders</h3>
+                        <button class="text-[var(--accent-color)] text-xs md:text-sm font-semibold hover:underline">View All</button>
+                    </div>
+                    <div class="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order SKU / Project</th>
+                                    <th>Manufacturer</th>
+                                    <th>Target Delivery</th>
+                                    <th>Escrow Locked</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Industrial Actuators #A-4</div>
+                                        <div class="text-xs text-[var(--text-muted)]">SKU: IND-ACT-88</div>
+                                    </td>
+                                    <td>Shenzhen Precision Ltd</td>
+                                    <td>Nov 18, 2026</td>
+                                    <td class="font-bold text-emerald-600">$45,000.00</td>
+                                    <td><span class="status-badge status-active">In Transit</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Custom CNC Housings</div>
+                                        <div class="text-xs text-[var(--text-muted)]">SKU: CNC-HSG-02</div>
+                                    </td>
+                                    <td>Bavaria Industrial Co.</td>
+                                    <td>Dec 05, 2026</td>
+                                    <td class="font-bold text-emerald-600">$80,000.00</td>
+                                    <td><span class="status-badge status-active">Production</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Optical Sensor Modules</div>
+                                        <div class="text-xs text-[var(--text-muted)]">SKU: OPT-SEN-11</div>
+                                    </td>
+                                    <td>Taipei Electronics Assembly</td>
+                                    <td>Dec 20, 2026</td>
+                                    <td class="font-bold text-amber-600">$25,000.00</td>
+                                    <td><span class="status-badge status-pending">Sampling</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHER TABS CONTENT -->
+            <div id="tab-projects" class="tab-pane">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                    <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl">Your Sourcing Projects</h3>
+                    <button class="btn btn-solid !py-2.5 !px-5 !text-xs self-start sm:self-auto">+ Start New Project</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-sm transition-transform hover:-translate-y-1">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Project">
+                        <div class="p-5">
+                            <h4 class="font-bold text-base md:text-lg text-[var(--text-main)] mb-1">Industrial Actuators #A-4</h4>
+                            <p class="text-xs text-[var(--accent-color)] font-semibold mb-3">Status: In Transit</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-[var(--border-color)]">
+                                <span class="text-sky-500 text-sm font-bold"><i class="fas fa-shield-halved mr-1"></i> Escrow Secured</span>
+                                <button class="text-blue-500 hover:underline text-sm font-semibold">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-sm transition-transform hover:-translate-y-1">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Project">
+                        <div class="p-5">
+                            <h4 class="font-bold text-base md:text-lg text-[var(--text-main)] mb-1">Custom CNC Housings</h4>
+                            <p class="text-xs text-[var(--accent-color)] font-semibold mb-3">Status: Active Production</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-[var(--border-color)]">
+                                <span class="text-sky-500 text-sm font-bold"><i class="fas fa-shield-halved mr-1"></i> Escrow Secured</span>
+                                <button class="text-blue-500 hover:underline text-sm font-semibold">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-rfq" class="tab-pane">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                    <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl">Active RFQs & Bidding</h3>
+                    <button class="btn btn-solid !py-2.5 !px-5 !text-xs self-start sm:self-auto">Submit New RFQ</button>
+                </div>
+                <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-[var(--border-color)] pb-4">
+                        <div>
+                            <h4 class="font-bold text-base text-[var(--text-main)]">RFQ #9902 - High-Tolerance Steel Brackets</h4>
+                            <p class="text-xs text-[var(--text-muted)] mt-1">Submitted on Nov 02, 2026 • 3 factory bids received</p>
+                        </div>
+                        <span class="status-badge status-pending">Under Review</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-base text-[var(--text-main)]">RFQ #9845 - Custom Injection Molds</h4>
+                            <p class="text-xs text-[var(--text-muted)] mt-1">Submitted on Oct 28, 2026 • Bidding closed</p>
+                        </div>
+                        <span class="status-badge status-active">Awarded</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-escrow" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">Escrow Vault & Milestone Ledger</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+                    <div class="p-5 md:p-6 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex flex-col justify-center">
+                        <p class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">Total Locked Vault</p>
+                        <h3 class="text-3xl md:text-4xl font-black text-blue-600">$125,000</h3>
+                        <p class="text-xs text-slate-500 mt-2">Protected by Safe Trade escrow protocol</p>
+                    </div>
+                    <div class="p-5 md:p-6 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex flex-col justify-center">
+                        <p class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">Disbursed to Date</p>
+                        <h3 class="text-3xl md:text-4xl font-black text-emerald-600">$320,000</h3>
+                        <p class="text-xs text-emerald-600 mt-2"><i class="fas fa-check mr-1"></i> All inspections cleared</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-support" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">Support Desk & Liaison</h3>
+                <div class="space-y-4">
+                    <div class="p-4 md:p-5 bg-[var(--bg-card)] border border-l-4 border-l-blue-500 border-[var(--border-color)] rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold text-blue-500 uppercase tracking-wider mb-1 block">Assigned Senior Director</span>
+                            <h4 class="font-bold text-[var(--text-main)] text-base md:text-lg">Jonathan Davis (Direct Line)</h4>
+                            <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">Email: jonathan.d@procurecraft.com • 24/7 Priority Access</p>
+                        </div>
+                        <button class="btn btn-solid w-full sm:w-auto !py-2 !px-6 !text-xs">Send Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-settings" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">Account Settings</h3>
+                <div class="max-w-2xl bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 md:p-8">
+                    <form class="space-y-5 md:space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Enterprise Name</label>
+                            <input type="text" value="Apex Industrial Solutions" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-[var(--text-main)] text-sm focus:outline-none focus:border-[var(--accent-color)] transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Corporate Email</label>
+                            <input type="email" value="marcus@apex.com" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-[var(--text-main)] text-sm focus:outline-none focus:border-[var(--accent-color)] transition-colors">
+                        </div>
+                        <div class="pt-2">
+                            <button type="button" class="btn btn-solid w-full sm:w-auto !py-3 !px-8 !text-xs">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Sidebar Mobile Drawer Controls
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const sidebar = document.getElementById('sidebar');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+        if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Theme logic
+        const themeDesktop = document.getElementById('theme-toggle-desktop');
+        const iconDesktop = document.getElementById('theme-icon-desktop');
+        const theme = localStorage.getItem('theme') || 'light';
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (iconDesktop) iconDesktop.className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (iconDesktop) iconDesktop.className = 'fas fa-moon';
+            }
+        }
+
+        updateThemeUI(theme === 'dark');
+
+        function toggleTheme() {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateThemeUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if (themeDesktop) themeDesktop.onclick = toggleTheme;
+
+        // RTL/LTR logic
+        const rtlBtn = document.getElementById('rtl-btn');
+        const dir = localStorage.getItem('dir') || 'ltr';
+
+        function updateRTLUI(currentDir) {
+            const isRTL = currentDir === 'rtl';
+            if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
+        }
+
+        if (dir === 'rtl') { document.documentElement.dir = 'rtl'; }
+        updateRTLUI(dir);
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
+            updateRTLUI(newDir);
+        }
+
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
+
+        // Tab logic & auto-closing drawer on mobile
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(link.getAttribute('href') !== '#') return;
+                e.preventDefault();
+                const targetId = link.getAttribute('data-tab');
+                if(!targetId) return;
+
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                const targetPane = document.getElementById(targetId);
+                if(targetPane) targetPane.classList.add('active');
+
+                if (window.innerWidth < 1024) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

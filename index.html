@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ProcureCraft | Home - Global Procurement & Vendor Sourcing Agency</title>
+     <link rel="icon" type="image/jpeg" href="img/trade (2).jpg"> 
+
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration for Dark Mode & Custom Colors -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#93c5fd', // Light blue highlight
+              DEFAULT: '#2563eb', // Royal blue main
+              dark: '#1d4ed8', // Deeper blue for hover states
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body.menu-open { overflow: hidden; }
+    .mobile-drawer { right: -100%; transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .mobile-drawer.active { right: 0; }
+    [dir="rtl"] .mobile-drawer { right: auto; left: -100%; }
+    [dir="rtl"] .mobile-drawer.active { left: 0; right: auto; }
+    .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .mobile-dropdown-content.active { max-height: 300px; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-zinc-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+  <!-- ================= 1. NAVBAR & HAMBURGER MENU ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="index.html" class="group flex items-center gap-3 focus:outline-none">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-900/25 group-hover:scale-105 transition-all">
+            <i class="fa-solid fa-globe text-xl"></i>
+          </div>
+          <div class="flex flex-col text-left rtl:text-right">
+            <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+              Procure Craft
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links with File Redirects -->
+      <div class="hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-sm xl:text-base">
+
+        <!-- Home Dropdown Container -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-bold transition-colors py-2 focus:outline-none">
+            <span>Home</span>
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute start-0 mt-0 w-52 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 py-2 z-50">
+            <a href="index.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-zinc-700/80">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              <span>Home 1</span>
+            </a>
+            <a href="home2.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-transparent"></span>
+              <span>Home 2</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="about.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+        <a href="services.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Services</a>
+        <a href="safetrade.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Safe Trade</a>
+        <a href="pricing.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pricing</a>
+        <a href="contact.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+        
+        <!-- Dashboard Dropdown Container -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-colors py-2 focus:outline-none">
+            <span>Dashboard</span>
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute start-0 mt-0 w-56 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 py-2 z-50">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span>Admin Dashboard</span>
+            </a>
+            <a href="user-dashboard.html" class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              <span>User Dashboard</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Utilities: Dark Mode, RTL, Portal Login Button -->
+      <div class="hidden lg:flex items-center gap-3 shrink-0">
+        <button id="darkModeToggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-slate-300 transition-colors">
+          <i class="fa-solid fa-moon text-lg"></i>
+        </button>
+        <button id="rtlToggle" aria-label="Toggle RTL Layout" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors text-slate-700 dark:text-slate-300">
+          RTL
+        </button>
+        <a href="login.html" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-bold rounded-xl shadow-md transition-all">
+          LOGIN
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="lg:hidden flex items-center gap-2">
+        <button id="hamburgerBtn" aria-label="Open Menu" class="p-2.5 rounded-xl text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 focus:outline-none z-50 relative">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998] opacity-0 invisible transition-all duration-300" id="mobileOverlay"></div>
+    
+    <div class="mobile-drawer fixed top-0 w-[85%] max-w-[400px] h-screen bg-white dark:bg-zinc-950 z-[1001] p-6 pt-20 overflow-y-auto shadow-2xl" id="mobileMenu">
+      <button class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-full text-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors rtl:right-auto rtl:left-5" id="closeMenuBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <ul class="flex flex-col gap-3 list-none m-0 p-0">
+        <!-- Home Submenu -->
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="index.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Home 1</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="home2.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Home 2</a></li>
+
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="about.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">About</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="services.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Services</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="safetrade.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Safe Trade</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="pricing.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Pricing</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="contact.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Contact</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="admin-dashboard.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">Admin Dashboard</a></li>
+        <li class="border-b border-slate-100 dark:border-zinc-800 pb-2"><a href="user-dashboard.html" class="block py-2.5 text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600">User Dashboard</a></li>
+
+        <li class="pt-6">
+          <a href="login.html" class="block w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center shadow-lg transition-all mb-3"> LOGIN</a>
+          <div class="flex gap-3">
+            <button id="mobileDarkModeToggle" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 font-semibold text-sm text-slate-700 dark:text-slate-300">🌙 Dark Mode</button>
+            <button id="mobileRtlToggle" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 font-semibold text-sm text-slate-700 dark:text-slate-300">RTL Toggle</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ================= 2. HERO BANNER SECTION (Customized for Home Overview) ================= -->
+  <section class="relative bg-slate-950 text-white overflow-hidden min-h-[580px] lg:min-h-[640px] flex items-center">
+    <!-- Updated Hero Image: Modern Logistics & Automated Fulfillment Center -->
+    <div class="absolute inset-0 opacity-25 bg-cover bg-center filter brightness-75" style="background-image: url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=1600');"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-blue-950/50"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col items-start justify-center w-full">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-900/80 text-blue-200 border border-blue-500/40 mb-6 backdrop-blur-sm shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span>Welcome to ProcureCraft • Primary Sourcing Command Center</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight mb-6 text-white">
+        Your Gateway to Verified Global Manufacturers & Seamless Trade.
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed font-normal">
+        Empowering modern businesses with transparent vendor discovery, automated RFQ workflows, escrow-secured transactions, and complete supply chain visibility from factory floor to final destination.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <a href="services.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-xl shadow-xl text-slate-950 bg-blue-400 hover:bg-blue-300 transition-all transform hover:-translate-y-0.5 text-center">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <span>Discover Our Services</span>
+        </a>
+        <a href="safetrade.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-xl text-slate-100 border-2 border-blue-400/40 hover:bg-blue-900/40 transition-all text-center">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Learn About Safe Trade</span>
+        </a>
+      </div>
+<!-- Trust Pillars Ribbon -->
+      <div class="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-xs font-semibold text-slate-300">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-circle-check text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">100% Vetted</strong> Rigorous ISO & ESG checks</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-chart-line text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Cost Optimization</strong> Avg 18% client savings</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-earth-americas text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Global Network</strong> Active in 45+ countries</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shrink-0 shadow-sm">
+            <i class="fa-solid fa-gauge-high text-base"></i>
+          </div>
+          <div><strong class="block text-white text-sm">Rapid RFQ Turnaround</strong> Quotes within 48 hours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= HOME SECTION 3: LIVE STATISTICS ================= -->
+  <section class="py-20 bg-blue-600 text-white transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-700 text-blue-100 border border-blue-500/40">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Verified Impact</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Trusted by Industry Leaders Worldwide
+        </h2>
+        <p class="text-base text-blue-100 font-medium">
+          Our data-driven supply chain frameworks deliver measurable results at scale.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="p-6 bg-blue-700/50 rounded-2xl border border-blue-500/40 space-y-2">
+          <span class="block text-3xl sm:text-4xl font-extrabold">$1.2B+</span>
+          <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">Audited Transactions</span>
+        </div>
+        <div class="p-6 bg-blue-700/50 rounded-2xl border border-blue-500/40 space-y-2">
+          <span class="block text-3xl sm:text-4xl font-extrabold">1,800+</span>
+          <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">Vetted Factories</span>
+        </div>
+        <div class="p-6 bg-blue-700/50 rounded-2xl border border-blue-500/40 space-y-2">
+          <span class="block text-3xl sm:text-4xl font-extrabold">99.4%</span>
+          <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">On-Time Delivery</span>
+        </div>
+        <div class="p-6 bg-blue-700/50 rounded-2xl border border-blue-500/40 space-y-2">
+          <span class="block text-3xl sm:text-4xl font-extrabold">45+</span>
+          <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">Active Countries</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= HOME SECTION 3: GLOBAL TRADE CORRIDORS ================= -->
+ <!-- ================= GLOBAL CORRIDORS SECTION (Image Fixed) ================= -->
+  <section class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Title Block -->
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span>Global Corridors</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Active Trade Lanes & Regional Hub Operations.
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          We maintain dedicated bilingual inspection teams and customs clearance brokers stationed across the world's most vital manufacturing export zones.
+        </p>
+      </div>
+
+      <!-- Main Layout Grid with Fixed Image Showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Featured Image Showcase (Fixed Aspect Ratio Container) -->
+        <div class="lg:col-span-5 relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-zinc-800 bg-slate-100 dark:bg-zinc-950 aspect-[4/3] lg:aspect-[3/4]">
+          <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1200" alt="Global Trade Network Map" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white space-y-1">
+            <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-blue-600 text-white shadow">45+ Active Nations</span>
+            <h4 class="text-lg font-bold">Seamless Cross-Border Oversight</h4>
+          </div>
+        </div>
+
+        <!-- Right Column: Regional Hub Cards Grid (4 Hubs) -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <!-- Hub 1 -->
+          <div class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-4 hover:border-blue-500/50 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-building"></i>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-zinc-800">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">North America Hub</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">New York &middot; Toronto &middot; Chicago</p>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Oversight for USMCA trade compliance, final assembly audits, and domestic distribution logistics.
+            </p>
+          </div>
+
+          <!-- Hub 2 -->
+          <div class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-4 hover:border-blue-500/50 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-industry"></i>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-zinc-800">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">APAC Manufacturing Zone</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Shenzhen &middot; Taipei &middot; Tokyo</p>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Direct factory floor vetting, real-time production monitoring, and ISO quality benchmark checks.
+            </p>
+          </div>
+
+          <!-- Hub 3 -->
+          <div class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-4 hover:border-blue-500/50 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-ship"></i>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-zinc-800">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">European Trade Corridor</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Frankfurt &middot; Rotterdam &middot; Milan</p>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Managing EU regulatory standards, REACH compliance, and cross-border customs clearance corridors.
+            </p>
+          </div>
+
+          <!-- Hub 4 -->
+          <div class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-4 hover:border-blue-500/50 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-warehouse"></i>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-zinc-800">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Latin America Gateway</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">São Paulo &middot; Mexico City</p>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Specialized nearshoring logistics support, raw material sourcing, and regional export oversight.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ================= HOME SECTION 1: SOURCING CALCULATOR ================= -->
+  <section class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Cost Savings Estimator</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Calculate Your Annual Procurement Savings Instantly.
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            By leveraging our pre-vetted global factory network and direct tariff optimization, enterprises typically reduce overhead by 15% to 22% within the first fiscal quarter.
+          </p>
+          <ul class="space-y-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Zero hidden middleman logistics fees</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Direct factory tier pricing guarantees</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-600"></i> Automated escrow milestone disbursements</li>
+          </ul>
+        </div>
+        <div class="bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 p-8 rounded-2xl shadow-xl space-y-6">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Quick Estimate Calculator</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Annual Sourcing Budget ($)</label>
+              <input type="text" value="$2,500,000" class="w-full px-4 py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:border-blue-600" readonly>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Estimated Annual Savings (Avg 18%)</label>
+              <input type="text" value="$450,000 Saved" class="w-full px-4 py-3 bg-blue-50 dark:bg-zinc-900 border border-blue-200 dark:border-zinc-700 rounded-xl text-sm font-extrabold text-blue-600 dark:text-blue-400" readonly>
+            </div>
+            <a href="contact.html" class="block w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center shadow transition-all">
+              Request Detailed Audit Report
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ================= HOME SECTION 2: CORE CAPABILITIES ================= -->
+  <section class="py-20 bg-slate-50 dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-800">
+          <i class="fa-solid fa-cubes"></i>
+          <span>End-to-End Infrastructure</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Comprehensive Sourcing Solutions for Enterprise Scale
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          Everything your organization needs to source, verify, and ship globally with absolute confidence.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Vendor Discovery & Vetting</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            Rigorous on-site factory audits, financial background checks, and ISO compliance verification across 45+ countries.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-file-contract"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Automated RFQ Management</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            Streamline quote comparisons, negotiate contract terms securely, and lock in production timelines within 48 hours.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Logistics & Customs Oversight</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            End-to-end freight forwarding coordination, customs clearance paperwork management, and real-time milestone tracking.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ================= HOME SECTION 4: SAFE TRADE & ESCROW ================= -->
+  <section class="py-20 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="relative bg-slate-950 text-white p-8 sm:p-10 rounded-2xl shadow-2xl space-y-6 border border-slate-800">
+          <div class="w-12 h-12 bg-blue-600/20 border border-blue-500/40 rounded-xl flex items-center justify-center text-blue-400 text-xl">
+            <i class="fa-solid fa-vault"></i>
+          </div>
+          <h3 class="text-xl font-bold">Escrow-Protected Milestone Payments</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Funds are locked securely in escrow and only released upon successful quality inspection milestones verified by our on-site inspectors. Zero financial exposure.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-400">
+            <span>Bank-Grade Encryption</span>
+            <span class="text-blue-400">100% Capital Protection</span>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-700">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Risk-Free Procurement</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Eliminate Cross-Border Payment Fraud Once and For All.
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            International sourcing carries inherent risks. Our Safe Trade protocol ensures your capital remains safeguarded until physical goods meet strict quality benchmarks.
+          </p>
+          <a href="safetrade.html" class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow transition-all">
+            <span>Explore Safe Trade Protocols</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= HOME SECTION 5: CLIENT TESTIMONIALS ================= -->
+  <section class="py-20 bg-slate-50 dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase bg-blue-50 dark:bg-zinc-900 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-zinc-800">
+          <i class="fa-solid fa-quote-left"></i>
+          <span>Client Success</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          What Enterprise Leaders Say About ProcureCraft
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 font-medium">
+          Real feedback from supply chain directors and procurement executives.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            "ProcureCraft completely transformed our overseas manufacturing pipeline. We cut our component sourcing costs by 19% in the first six months."
+          </p>
+          <div class="pt-2 border-t border-slate-100 dark:border-zinc-800">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Marcus Vance</h4>
+            <span class="text-xs text-slate-500 dark:text-slate-400">COO, Apex Industrial Solutions</span>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            "The Safe Trade escrow system gave our board the peace of mind we needed when onboarding new suppliers across APAC."
+          </p>
+          <div class="pt-2 border-t border-slate-100 dark:border-zinc-800">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Elena Rostova</h4>
+            <span class="text-xs text-slate-500 dark:text-slate-400">Head of Supply Chain, Vertex Global</span>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 space-y-4 shadow-sm hover:shadow-md transition-all">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+            "Their on-the-ground factory audit team caught critical quality issues before shipment. Invaluable partnership for our hardware brand."
+          </p>
+          <div class="pt-2 border-t border-slate-100 dark:border-zinc-800">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">David Chen</h4>
+            <span class="text-xs text-slate-500 dark:text-slate-400">Founder, NexaTech Hardware</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ================= 3. FOOTER SECTION ================= -->
+  <footer class="bg-white dark:bg-zinc-950 text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand Info -->
+        <div class="space-y-4 sm:col-span-2 lg:col-span-1">
+          <a href="index.html" class="group inline-flex items-center gap-3 focus:outline-none">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+              <i class="fa-solid fa-globe text-xl"></i>
+            </div>
+            <div class="flex flex-col text-left rtl:text-right">
+              <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+                Procure Craft
+              </span>
+            </div>
+          </a>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-relaxed">
+            Your trusted global procurement and vendor sourcing partner. Optimizing supply chains, mitigating risk, and driving bottom-line growth.
+          </p>
+          <div class="pt-1 flex items-center space-x-3">
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-slate-300 hover:bg-blue-600 hover:text-white transition-colors">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-slate-300 hover:bg-blue-600 hover:text-white transition-colors">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Navigation</h3>
+          <ul class="space-y-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <li><a href="home.html" class="hover:text-blue-600 transition-colors">Home (Overview)</a></li>
+            <li><a href="home2.html" class="hover:text-blue-600 transition-colors">Home 2</a></li>
+            <li><a href="about.html" class="hover:text-blue-600 transition-colors">About Us</a></li>
+            <li><a href="services.html" class="hover:text-blue-600 transition-colors">Sourcing Services</a></li>
+            <li><a href="safetrade.html" class="hover:text-blue-600 transition-colors">Safe Trade</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-600 transition-colors">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Office Location Partition -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Global Headquarters</h3>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+            Suite 400, Commerce Tower<br>
+            Financial District<br>
+            New York, NY 10005
+          </p>
+          <a href="contact.html" class="inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+            <span>Schedule Consultation &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Operating Hours Partition -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Support Hours</h3>
+          <ul class="space-y-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <li class="flex justify-between">
+              <span>Mon - Fri:</span>
+              <span class="font-bold text-slate-900 dark:text-white">8:00 AM – 7:00 PM EST</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Saturday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">9:00 AM – 3:00 PM EST</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Sunday:</span>
+              <span class="font-bold text-slate-900 dark:text-white">Emergency Desk</span>
+            </li>
+          </ul>
+          <div class="mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
+            * 24/7 client portal desk available for enterprise accounts.
+          </div>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4">Procurement Insights</h3>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Subscribe to our monthly supply chain trends and global supplier tariff reports.</p>
+          <form onsubmit="event.preventDefault(); showCustomModal('Subscribed to procurement insights successfully!');" class="space-y-2">
+            <input type="email" placeholder="corporate@company.com" required class="w-full px-3 py-2 text-sm font-medium bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-600">
+            <button type="submit" class="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-colors shadow">
+              Get Industry Report
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-slate-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 space-y-4 sm:space-y-0 text-center sm:text-left">
+        <p>&copy; 2026 ProcureCraft Procurement & Vendor Sourcing Agency. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="case-studies.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Case Studies</a>
+          <a href="privacy.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Privacy Policy</a>
+          <a href="contact.html" class="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Notification Modal -->
+  <div id="customModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-900 dark:text-slate-100 rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-2xl text-center space-y-4">
+      <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-md">
+        <i class="fa-solid fa-check text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white">Notice</h3>
+      <p id="modalMessage" class="text-sm font-semibold text-slate-600 dark:text-slate-300">Action completed successfully.</p>
+      <div class="pt-2">
+        <button onclick="closeCustomModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow transition-colors">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dark Mode
+      const html = document.documentElement;
+      const darkModeBtns = [document.getElementById('darkModeToggle'), document.getElementById('mobileDarkModeToggle')];
+
+      const setDarkMode = (isDark) => {
+        if (isDark) {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        if (darkModeBtns[0]) darkModeBtns[0].innerHTML = isDark ? '<i class="fa-solid fa-sun text-lg"></i>' : '<i class="fa-solid fa-moon text-lg"></i>';
+        if (darkModeBtns[1]) darkModeBtns[1].textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      };
+
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setDarkMode(true);
+      } else {
+        setDarkMode(false);
+      }
+
+      darkModeBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', () => setDarkMode(!html.classList.contains('dark')));
+      });
+
+      // 2. RTL Layout Toggle
+      const rtlBtns = [document.getElementById('rtlToggle'), document.getElementById('mobileRtlToggle')];
+      const setRTL = (isRTL) => {
+        html.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+        rtlBtns.forEach(btn => {
+          if (btn) btn.textContent = isRTL ? 'LTR' : 'RTL';
+        });
+      };
+
+      if (localStorage.getItem('dir') === 'rtl') setRTL(true);
+
+      rtlBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', () => setRTL(html.getAttribute('dir') !== 'rtl'));
+      });
+
+      // 3. Mobile Drawer & Overlay
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+      const toggleMenu = (open) => {
+        if (open) {
+          mobileMenu.classList.add('active');
+          mobileOverlay.classList.remove('opacity-0', 'invisible');
+          mobileOverlay.classList.add('opacity-100', 'visible');
+          document.body.classList.add('menu-open');
+        } else {
+          mobileMenu.classList.remove('active');
+          mobileOverlay.classList.add('opacity-0', 'invisible');
+          mobileOverlay.classList.remove('opacity-100', 'visible');
+          document.body.classList.remove('menu-open');
+        }
+      };
+
+      hamburgerBtn?.addEventListener('click', () => toggleMenu(true));
+      closeMenuBtn?.addEventListener('click', () => toggleMenu(false));
+      mobileOverlay?.addEventListener('click', () => toggleMenu(false));
+
+      // Mobile Accordion Dropdowns
+      document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-dropdown');
+          const content = document.getElementById(targetId);
+          const icon = this.querySelector('fa-chevron-down, i');
+          
+          if (content) {
+            content.classList.toggle('active');
+            if (icon) {
+              icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : '';
+            }
+          }
+        });
+      });
+    });
+
+    function showCustomModal(msg) {
+      const modal = document.getElementById('customModal');
+      document.getElementById('modalMessage').textContent = msg;
+      modal.classList.remove('hidden');
+    }
+
+    function closeCustomModal() {
+      document.getElementById('customModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

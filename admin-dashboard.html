@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProcureCraft - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+       <link rel="icon" type="image/jpeg" href="img/trade (2).jpg"> 
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: {
+                        semibold: '500',
+                        bold: '600',
+                        extrabold: '800',
+                        black: '900'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === RESET & CORE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* === THEME VARIABLES === */
+        :root {
+            --bg-color: #FAFAFA;
+            --bg-secondary: #F0F9FF;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --accent-color: #2563EB; 
+            --accent-dark: #1D4ED8;
+            --border-color: #E2E8F0;
+            --sidebar-bg: #FFFFFF;
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent-color: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --border-color: #334155;
+            --sidebar-bg: #1E293B;
+        }
+
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+        /* === BUTTONS DESIGN SYSTEM === */
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 9999px;
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            font-weight: 800;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        .icon-btn:hover {
+            background: var(--accent-color);
+            color: #fff !important;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            min-height: 44px;
+            box-sizing: border-box;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border-radius: 9999px;
+            border: 1.5px solid transparent;
+            text-decoration: none;
+            line-height: 1.25;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-solid {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: #FFFFFF !important;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.42);
+            filter: brightness(1.05);
+            color: #FFFFFF !important;
+        }
+
+        .btn-outline {
+            background: var(--bg-card);
+            color: var(--text-main) !important;
+            border-color: var(--border-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+        body.dark-mode .btn-outline {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+        }
+        .btn-outline:hover {
+            background: var(--accent-color) !important;
+            color: #FFFFFF !important;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+        }
+
+        .btn-accent-outline {
+            background: transparent;
+            color: var(--accent-color) !important;
+            border-color: var(--accent-color);
+        }
+        .btn-accent-outline:hover {
+            background: var(--accent-color) !important;
+            color: #FFFFFF !important;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+        }
+
+        /* DASHBOARD LAYOUT */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 50;
+            flex-shrink: 0;
+        }
+        [dir="rtl"] .sidebar {
+            border-right: none;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            min-width: 0;
+        }
+        .topbar {
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            background-color: var(--sidebar-bg);
+            flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+            .topbar { padding: 0 24px; }
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 16px;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .content-area { padding: 24px; }
+        }
+        @media (min-width: 1024px) {
+            .content-area { padding: 32px; }
+        }
+
+        /* MOBILE & TABLET DRAWER */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(2px);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 1023px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                height: 100vh;
+                transform: translateX(-100%);
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+            [dir="rtl"] .sidebar {
+                left: auto;
+                right: 0;
+                transform: translateX(100%);
+                box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+            .sidebar.open {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* SIDEBAR LINKS */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        [dir="rtl"] .sidebar-link {
+            border-left: none;
+            border-right: 3px solid transparent;
+        }
+        .sidebar-link:hover {
+            background-color: var(--bg-secondary);
+            color: var(--accent-color);
+        }
+        .sidebar-link.active {
+            color: var(--accent-color);
+            background-color: var(--bg-secondary);
+            border-left-color: var(--accent-color);
+        }
+        [dir="rtl"] .sidebar-link.active {
+            border-right-color: var(--accent-color);
+        }
+
+        /* CARDS */
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; min-width: 580px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        [dir="rtl"] th, [dir="rtl"] td { text-align: right; }
+        th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        td { font-size: 13px; color: var(--text-main); font-weight: 500; }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .status-active { background: rgba(37, 99, 235, 0.1); color: #2563EB; }
+        .status-pending { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+        .status-error { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        
+        /* TABS */
+        .tab-pane { display: none; animation: fadeIn 0.3s ease; width: 100%; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+
+<body>
+
+    <!-- MOBILE BACKDROP OVERLAY -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <!-- LOGO HEADER -->
+        <div class="h-[70px] flex items-center justify-between px-6 border-b border-[var(--border-color)] shrink-0">
+            <a href="index.html" class="group flex items-center gap-3 focus:outline-none" style="text-decoration: none;">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-900/25 group-hover:scale-105 transition-all shrink-0">
+                    <i class="fa-solid fa-globe text-xl"></i>
+                </div>
+                <div class="flex flex-col text-left rtl:text-right">
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--text-main)] leading-none">
+                        Procure Craft
+                    </span>
+                </div>
+            </a>
+            <!-- CLOSE BUTTON ON MOBILE/TABLET -->
+            <button id="sidebar-close-btn" class="icon-btn lg:hidden ml-auto" aria-label="Close sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 py-6 space-y-1 overflow-y-auto">
+            <a href="#" class="sidebar-link active" data-tab="tab-dashboard"><i class="fas fa-home w-5 text-center"></i> Dashboard Overview</a>
+            <a href="#" class="sidebar-link" data-tab="tab-vendors"><i class="fas fa-warehouse w-5 text-center"></i> Manage Vendors</a>
+            <a href="#" class="sidebar-link" data-tab="tab-rfq"><i class="fas fa-file-invoice-dollar w-5 text-center"></i> RFQ & Audits</a>
+            <a href="#" class="sidebar-link" data-tab="tab-reports"><i class="fas fa-chart-pie w-5 text-center"></i> Trade Reports</a>
+            <a href="#" class="sidebar-link" data-tab="tab-tickets"><i class="fas fa-headset w-5 text-center"></i> Support Tickets</a>
+            <a href="#" class="sidebar-link" data-tab="tab-settings"><i class="fas fa-gear w-5 text-center"></i> System Settings</a>
+        </div>
+
+        <div class="p-6 border-t border-[var(--border-color)]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--accent-color)] flex items-center justify-center text-white font-bold shrink-0">
+                    AD
+                </div>
+                <div class="min-w-0">
+                    <h4 class="font-bold text-sm text-[var(--text-main)] truncate">Admin User</h4>
+                    <p class="text-xs text-[var(--text-muted)] truncate">Super Administrator</p>
+                </div>
+            </div>
+            <a href="login.html" class="btn btn-outline w-full !py-2.5 !text-xs !normal-case hover:!bg-red-50 hover:!text-red-600 hover:!border-red-300 dark:hover:!bg-red-950/30 dark:hover:!text-red-400 mt-4">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="flex items-center gap-3 min-w-0">
+                <!-- HAMBURGER BUTTON (VISIBLE ONLY ON MOBILE & TABLET) -->
+                <button id="hamburger-btn" class="icon-btn lg:hidden" aria-label="Open sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2 class="text-base sm:text-xl font-bold text-[var(--text-main)] truncate">Admin Command Center</h2>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                <button id="theme-toggle-desktop" class="icon-btn" title="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="theme-icon-desktop"></i>
+                </button>
+                <button id="rtl-btn" class="icon-btn" title="Toggle LTR/RTL">
+                    LTR
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+            <div id="tab-dashboard" class="tab-pane active">
+                <!-- STATS GRID -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8 w-full">
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-blue-100 text-blue-600 dark:bg-blue-900/30">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Vetted Factories</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">1,800+</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-blue-100 text-blue-600 dark:bg-blue-900/30">
+                            <i class="fas fa-vault"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Audited Volume</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">$1.2B+</h3>
+                        </div>
+                    </div>
+    
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Escrow Protected</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">99.4%</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card min-w-0">
+                        <div class="stat-icon bg-amber-100 text-amber-600 dark:bg-amber-900/30">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[var(--text-muted)] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-1 truncate">Active RFQ Queue</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] truncate">42</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHARTS & TABLES -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+                    <!-- CONTENT SECTION -->
+                    <div class="lg:col-span-2 bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] min-w-0">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg">System Alerts & Trade Oversight</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 md:p-5 border border-amber-200 dark:border-amber-900/50 rounded-xl bg-amber-50 dark:bg-amber-900/10 flex items-start gap-4">
+                                <i class="fas fa-triangle-exclamation text-amber-500 text-xl mt-1 shrink-0"></i>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-bold text-amber-700 dark:text-amber-400 text-sm md:text-base">APAC Factory Audit Due</h4>
+                                    <p class="text-xs md:text-sm text-amber-600 dark:text-amber-300 mt-1">Shenzhen Manufacturing Hub #4 requires bi-annual ISO compliance re-verification before milestone escrow disbursement.</p>
+                                    <button class="btn btn-outline !py-1.5 !px-3.5 !text-xs !normal-case !bg-amber-100 dark:!bg-amber-900/40 !text-amber-700 dark:!text-amber-300 !border-amber-200 dark:!border-amber-800 hover:!bg-amber-200 hover:!text-amber-800 hover:!border-amber-300 mt-3">Review Audit Report</button>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-5 border border-[var(--border-color)] rounded-xl bg-[var(--bg-secondary)] flex items-start gap-4">
+                                <i class="fas fa-server text-[var(--text-muted)] text-xl mt-1 shrink-0"></i>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-bold text-[var(--text-main)] text-sm md:text-base">Secure Escrow Portal Maintenance</h4>
+                                    <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">Scheduled database security patches for multi-signature smart contracts on Sunday at 2:00 AM EST.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                <button class="btn btn-solid w-full !py-3 !text-xs md:!text-sm flex items-center justify-center gap-2 !normal-case">
+                                    <i class="fas fa-bullhorn"></i> Send Global Vendor Notice
+                                </button>
+                                <button class="btn btn-outline w-full !py-3 !text-xs md:!text-sm flex items-center justify-center gap-2 !normal-case">
+                                    <i class="fas fa-file-export"></i> Export Transaction Ledger
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RECENT ACTIVITY -->
+                    <div class="bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] min-w-0">
+                        <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg mb-6">System Activity</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-[var(--accent-color)] mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">New enterprise account registered</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Apex Industrial Solutions</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">10 mins ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">Escrow milestone unlocked</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Order #PC-8842 ($125,000)</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-orange-500 mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">Support ticket resolved</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Ticket #4092 - Tariff clearance</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">5 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-2 h-2 rounded-full bg-purple-500 mt-2 shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs md:text-sm font-semibold text-[var(--text-main)] truncate">Daily Backup Complete</p>
+                                    <p class="text-xs text-[var(--text-muted)] mt-1 truncate">Encrypted cloud database successful</p>
+                                    <p class="text-[10px] text-[var(--text-muted)] mt-1">Yesterday at 11:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLE WITH HORIZONTAL SCROLL FOR SMALL SCREENS -->
+                <div class="mt-6 md:mt-8 bg-[var(--bg-card)] rounded-[20px] p-5 md:p-6 border border-[var(--border-color)] w-full">
+                    <div class="flex justify-between items-center mb-4 md:mb-6">
+                        <h3 class="font-bold text-[var(--text-main)] text-base md:text-lg">Recent Verified Enterprise Transactions</h3>
+                        <button class="text-[var(--accent-color)] text-xs md:text-sm font-semibold hover:underline">View All</button>
+                    </div>
+                    <div class="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client Enterprise</th>
+                                    <th>Assigned Hub</th>
+                                    <th>Transaction Date</th>
+                                    <th>Escrow Status</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Apex Industrial Solutions</div>
+                                        <div class="text-xs text-[var(--text-muted)]">marcus@apex.com</div>
+                                    </td>
+                                    <td>North America Hub</td>
+                                    <td>Nov 04, 2026</td>
+                                    <td class="font-bold text-emerald-600">Funded ($450,000)</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Vertex Global</div>
+                                        <div class="text-xs text-[var(--text-muted)]">elena@vertex.com</div>
+                                    </td>
+                                    <td>APAC Manufacturing Zone</td>
+                                    <td>Nov 03, 2026</td>
+                                    <td class="font-bold text-emerald-600">Funded ($180,000)</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">NexaTech Hardware</div>
+                                        <div class="text-xs text-[var(--text-muted)]">david@nexatech.com</div>
+                                    </td>
+                                    <td>European Trade Corridor</td>
+                                    <td>Nov 02, 2026</td>
+                                    <td class="font-bold text-amber-600">Pending Inspection</td>
+                                    <td><span class="status-badge status-pending">Processing</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-semibold">Global Logistics Corp</div>
+                                        <div class="text-xs text-[var(--text-muted)]">support@globalog.com</div>
+                                    </td>
+                                    <td>Latin America Gateway</td>
+                                    <td>Nov 01, 2026</td>
+                                    <td class="font-bold text-red-600">Action Required</td>
+                                    <td><span class="status-badge status-error">Incomplete</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHER TABS CONTENT -->
+            <div id="tab-vendors" class="tab-pane">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                    <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl">Manage Vetted Vendors</h3>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" placeholder="Search vendors or factories..." class="px-4 py-2 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg text-sm focus:outline-none focus:border-[var(--accent-color)] text-[var(--text-main)]">
+                        <button class="btn btn-solid !py-2.5 !px-5 !text-xs whitespace-nowrap">Onboard Vendor</button>
+                    </div>
+                </div>
+                <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+                                <tr>
+                                    <th class="p-4 text-xs font-bold text-[var(--text-muted)] uppercase">Factory Name</th>
+                                    <th class="p-4 text-xs font-bold text-[var(--text-muted)] uppercase">Region Hub</th>
+                                    <th class="p-4 text-xs font-bold text-[var(--text-muted)] uppercase">ISO Compliance</th>
+                                    <th class="p-4 text-xs font-bold text-[var(--text-muted)] uppercase">Status</th>
+                                    <th class="p-4 text-xs font-bold text-[var(--text-muted)] uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-[var(--border-color)]">
+                                    <td class="p-4 text-sm text-[var(--text-main)] font-medium">Shenzhen Precision Tech Ltd</td>
+                                    <td class="p-4 text-sm text-[var(--text-muted)]">APAC Zone</td>
+                                    <td class="p-4 text-sm font-bold text-[var(--text-main)]">ISO 9001 Verified</td>
+                                    <td class="p-4"><span class="px-2 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 rounded text-[10px] font-bold uppercase tracking-wider">Active</span></td>
+                                    <td class="p-4 flex gap-2"><button class="text-blue-500 hover:text-blue-600"><i class="fas fa-edit"></i></button><button class="text-red-500 hover:text-red-600"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                                <tr class="border-b border-[var(--border-color)]">
+                                    <td class="p-4 text-sm text-[var(--text-main)] font-medium">Bavaria Industrial Components</td>
+                                    <td class="p-4 text-sm text-[var(--text-muted)]">Europe Corridor</td>
+                                    <td class="p-4 text-sm font-bold text-[var(--text-main)]">ISO 14001 Verified</td>
+                                    <td class="p-4"><span class="px-2 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 rounded text-[10px] font-bold uppercase tracking-wider">Active</span></td>
+                                    <td class="p-4 flex gap-2"><button class="text-blue-500 hover:text-blue-600"><i class="fas fa-edit"></i></button><button class="text-red-500 hover:text-red-600"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-rfq" class="tab-pane">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                    <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl">RFQ & Factory Audits</h3>
+                    <button class="btn btn-solid !py-2.5 !px-5 !text-xs self-start sm:self-auto">New Audit Request</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-sm transition-transform hover:-translate-y-1">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Audit">
+                        <div class="p-5">
+                            <h4 class="font-bold text-base md:text-lg text-[var(--text-main)] mb-1">Taipei Electronics Assembly</h4>
+                            <p class="text-xs text-[var(--accent-color)] font-semibold mb-3">Pre-Shipment Inspection</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-[var(--border-color)]">
+                                <span class="text-blue-500 text-sm font-bold"><i class="fas fa-calendar-check mr-1"></i> Due Tomorrow</span>
+                                <button class="text-blue-500 hover:underline text-sm font-semibold">View Log</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-sm transition-transform hover:-translate-y-1">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Audit">
+                        <div class="p-5">
+                            <h4 class="font-bold text-base md:text-lg text-[var(--text-main)] mb-1">Frankfurt Logistics Hub</h4>
+                            <p class="text-xs text-[var(--accent-color)] font-semibold mb-3">Customs Compliance Check</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-[var(--border-color)]">
+                                <span class="text-emerald-500 text-sm font-bold"><i class="fas fa-check-circle mr-1"></i> Completed</span>
+                                <button class="text-blue-500 hover:underline text-sm font-semibold">View Log</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-reports" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">Trade Reports & Financials</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+                    <div class="p-5 md:p-6 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex flex-col justify-center">
+                        <p class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">Audited Volume</p>
+                        <h3 class="text-3xl md:text-4xl font-black text-emerald-500">$1.2B+</h3>
+                        <p class="text-xs text-emerald-600 mt-2"><i class="fas fa-arrow-up mr-1"></i> +18% YTD growth</p>
+                    </div>
+                    <div class="p-5 md:p-6 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex flex-col justify-center">
+                        <p class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">Escrow Transactions</p>
+                        <h3 class="text-3xl md:text-4xl font-black text-blue-500">5,000+</h3>
+                        <p class="text-xs text-blue-600 mt-2"><i class="fas fa-arrow-up mr-1"></i> +340 this month</p>
+                    </div>
+                    <div class="p-5 md:p-6 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex flex-col justify-center sm:col-span-2 md:col-span-1">
+                        <p class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">On-Time Delivery Rate</p>
+                        <h3 class="text-3xl md:text-4xl font-black text-[var(--text-main)]">99.4%</h3>
+                        <p class="text-xs text-emerald-600 mt-2"><i class="fas fa-arrow-up mr-1"></i> +0.6% from target</p>
+                    </div>
+                </div>
+                <div class="w-full min-h-[260px] bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl flex items-center justify-center text-[var(--text-muted)] flex-col gap-2 p-6 text-center">
+                    <i class="fas fa-chart-line text-4xl text-blue-500"></i>
+                    <span class="text-sm">Global Supply Chain & Tariff Analytics Visualization</span>
+                </div>
+            </div>
+
+            <div id="tab-tickets" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">Support Tickets</h3>
+                <div class="space-y-4">
+                    <div class="p-4 md:p-5 bg-[var(--bg-card)] border border-l-4 border-l-red-500 border-[var(--border-color)] rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition-transform hover:-translate-y-1 hover:shadow-sm">
+                        <div>
+                            <span class="text-[10px] font-bold text-red-500 uppercase tracking-wider mb-1 block">High Priority</span>
+                            <h4 class="font-bold text-[var(--text-main)] text-base md:text-lg">Urgent customs clearance delay dispute</h4>
+                            <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">From: marcus@apex.com • 2 hours ago</p>
+                        </div>
+                        <button class="btn btn-outline w-full sm:w-auto !py-2 !px-6 !text-xs">Respond</button>
+                    </div>
+                    <div class="p-4 md:p-5 bg-[var(--bg-card)] border border-l-4 border-l-yellow-500 border-[var(--border-color)] rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition-transform hover:-translate-y-1 hover:shadow-sm">
+                        <div>
+                            <span class="text-[10px] font-bold text-yellow-500 uppercase tracking-wider mb-1 block">Medium Priority</span>
+                            <h4 class="font-bold text-[var(--text-main)] text-base md:text-lg">Escrow milestone release confirmation</h4>
+                            <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">From: elena@vertex.com • 5 hours ago</p>
+                        </div>
+                        <button class="btn btn-outline w-full sm:w-auto !py-2 !px-6 !text-xs">Respond</button>
+                    </div>
+                    <div class="p-4 md:p-5 bg-[var(--bg-card)] border border-l-4 border-l-emerald-500 border-[var(--border-color)] rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition-transform hover:-translate-y-1 hover:shadow-sm">
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider mb-1 block">Resolved</span>
+                            <h4 class="font-bold text-[var(--text-main)] text-base md:text-lg">Request copy of ISO certification audit</h4>
+                            <p class="text-xs md:text-sm text-[var(--text-muted)] mt-1">From: david@nexatech.com • 1 day ago</p>
+                        </div>
+                        <button class="btn btn-outline w-full sm:w-auto !py-2 !px-6 !text-xs">View Log</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-settings" class="tab-pane">
+                <h3 class="font-bold text-[var(--text-main)] text-xl md:text-2xl mb-6">System Settings</h3>
+                <div class="max-w-2xl bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 md:p-8">
+                    <form class="space-y-5 md:space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Agency Name</label>
+                            <input type="text" value="ProcureCraft Procurement & Vendor Sourcing" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-[var(--text-main)] text-sm focus:outline-none focus:border-[var(--accent-color)] transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Support Helpline Email</label>
+                            <input type="email" value="support@procurecraft.com" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-[var(--text-main)] text-sm focus:outline-none focus:border-[var(--accent-color)] transition-colors">
+                        </div>
+                        <div class="flex items-center gap-3 bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border-color)]">
+                            <input type="checkbox" id="maintenance" class="w-5 h-5 rounded text-[var(--accent-color)] border-[var(--border-color)] cursor-pointer">
+                            <label for="maintenance" class="text-sm font-bold text-[var(--text-main)] cursor-pointer flex-1">Enable Portal Maintenance Mode</label>
+                        </div>
+                        <div class="pt-2">
+                            <button type="button" class="btn btn-solid w-full sm:w-auto !py-3 !px-8 !text-xs">Save Configuration</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Sidebar Mobile Drawer Controls
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const sidebar = document.getElementById('sidebar');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+        if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Theme logic
+        const themeDesktop = document.getElementById('theme-toggle-desktop');
+        const iconDesktop = document.getElementById('theme-icon-desktop');
+        const theme = localStorage.getItem('theme') || 'light';
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (iconDesktop) iconDesktop.className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (iconDesktop) iconDesktop.className = 'fas fa-moon';
+            }
+        }
+
+        updateThemeUI(theme === 'dark');
+
+        function toggleTheme() {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateThemeUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if (themeDesktop) themeDesktop.onclick = toggleTheme;
+
+        // RTL/LTR logic
+        const rtlBtn = document.getElementById('rtl-btn');
+        const dir = localStorage.getItem('dir') || 'ltr';
+
+        function updateRTLUI(currentDir) {
+            const isRTL = currentDir === 'rtl';
+            if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
+        }
+
+        if (dir === 'rtl') { document.documentElement.dir = 'rtl'; }
+        updateRTLUI(dir);
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
+            updateRTLUI(newDir);
+        }
+
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
+
+        // Tab logic & auto-closing drawer on mobile
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(link.getAttribute('href') !== '#') return;
+                e.preventDefault();
+                const targetId = link.getAttribute('data-tab');
+                if(!targetId) return;
+
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                const targetPane = document.getElementById(targetId);
+                if(targetPane) targetPane.classList.add('active');
+
+                if (window.innerWidth < 1024) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

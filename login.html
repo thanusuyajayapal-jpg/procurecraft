@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Login - ProcureCraft Sourcing & Procurement</title>
+     <link rel="icon" type="image/jpeg" href="img/trade (2).jpg"> 
+
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration for Dark Mode & Custom Colors -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#93c5fd', 
+              DEFAULT: '#2563eb', 
+              dark: '#1d4ed8', 
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-zinc-900 dark:text-slate-100 transition-colors duration-300 font-sans min-h-screen min-h-[100dvh] w-full relative flex flex-col items-center justify-center p-4 py-6 sm:py-10 overflow-x-hidden overflow-y-auto">
+
+  <!-- BACKGROUND EFFECTS -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-500/15 dark:bg-blue-500/10 blur-[120px]"></div>
+      <div class="absolute top-[60%] -right-[10%] w-[40%] h-[50%] rounded-full bg-indigo-600/10 blur-[120px]"></div>
+      <div class="absolute inset-0 opacity-20 dark:opacity-5" style="background-image: radial-gradient(circle at 2px 2px, #2563eb 1px, transparent 0); background-size: 32px 32px;"></div>
+  </div>
+
+  <!-- TOP NAVIGATION CONTROLS -->
+  <div class="w-full max-w-3xl flex items-center justify-between mb-3 sm:mb-4 px-1 z-20">
+      <a href="index.html" class="h-10 inline-flex items-center gap-2 px-3.5 sm:px-4 rounded-full bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md border border-slate-200/80 dark:border-zinc-700/80 text-slate-700 dark:text-slate-300 hover:bg-brand hover:text-white dark:hover:bg-brand dark:hover:text-white hover:border-brand transition-all text-xs sm:text-sm font-semibold shadow-sm group">
+          <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-0.5 rtl:group-hover:translate-x-0.5 rtl:rotate-180"></i>
+          <span>Home</span>
+      </a>
+      <div class="flex items-center gap-2 sm:gap-2.5">
+          <button id="darkToggleBtn" class="w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md border border-slate-200/80 dark:border-zinc-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand hover:text-white dark:hover:bg-brand hover:border-brand transition-all shadow-sm text-sm" title="Toggle dark mode" aria-label="Toggle dark mode">
+              <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="rtlToggleBtn" class="h-10 min-w-[40px] px-3 sm:px-3.5 rounded-full bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md border border-slate-200/80 dark:border-zinc-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-brand hover:text-white dark:hover:bg-brand hover:border-brand transition-all shadow-sm" title="Toggle RTL/LTR" aria-label="Toggle text direction">
+              LTR
+          </button>
+      </div>
+  </div>
+
+  <!-- CENTERED CARD -->
+  <div class="w-full max-w-3xl bg-white/80 dark:bg-zinc-800/80 backdrop-blur-2xl border border-white/40 dark:border-zinc-700/50 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col md:flex-row overflow-hidden relative z-10">
+      
+      <!-- FORM SIDE -->
+      <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-center">
+          <div class="mb-6 text-center">
+              <!-- LOGO 100% IDENTICAL TO INDEX/TEMPLATE SPECS -->
+              <a href="index.html" class="inline-flex items-center gap-2.5 group focus:outline-none mb-4 mx-auto" style="text-decoration: none;">
+                  <div class="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 text-white shadow-md shadow-blue-900/25 group-hover:scale-105 transition-all shrink-0">
+                      <i class="fa-solid fa-globe text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="flex flex-col text-start">
+                      <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
+                          Procure Craft
+                      </span>
+                  </div>
+              </a>
+              <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-1 tracking-tight">Welcome Back</h2>
+              <p class="text-slate-500 dark:text-slate-400 text-xs">Please log in to your procurement portal.</p>
+          </div>
+
+          <!-- GOOGLE LOGIN -->
+          <button type="button" class="w-full flex items-center justify-center gap-2 py-2 px-4 bg-white dark:bg-zinc-700 border border-slate-200 dark:border-zinc-600 rounded-xl text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-50 dark:hover:bg-zinc-600 transition-all mb-2.5 shadow-sm hover:shadow">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-3.5 h-3.5" alt="Google">
+              Log in with Google
+          </button>
+
+          <!-- APPLE LOGIN -->
+          <button type="button" class="w-full flex items-center justify-center gap-2 py-2 px-4 bg-white dark:bg-zinc-700 border border-slate-200 dark:border-zinc-600 rounded-xl text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-50 dark:hover:bg-zinc-600 transition-all mb-4 shadow-sm hover:shadow">
+              <i class="fab fa-apple text-base mb-[1px]"></i>
+              Log in with Apple
+          </button>
+
+          <div class="flex items-center gap-3 mb-4">
+              <div class="flex-1 h-px bg-slate-200 dark:bg-zinc-700"></div>
+              <span class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Or email</span>
+              <div class="flex-1 h-px bg-slate-200 dark:bg-zinc-700"></div>
+          </div>
+
+          <form action="user-dashboard.html" method="GET" class="space-y-3">
+              <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1 uppercase tracking-wider">Corporate Email</label>
+                  <div class="relative group">
+                      <div class="absolute inset-y-0 start-0 ps-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-brand text-slate-400">
+                          <i class="fas fa-envelope text-xs"></i>
+                      </div>
+                      <input type="email" class="w-full bg-slate-50 dark:bg-zinc-800/50 border border-slate-200 dark:border-zinc-600 rounded-xl ps-9 pe-4 py-2 transition-all text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" placeholder="corporate@company.com" required>
+                  </div>
+              </div>
+              
+              <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1 uppercase tracking-wider">Password</label>
+                  <div class="relative group">
+                      <div class="absolute inset-y-0 start-0 ps-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-brand text-slate-400">
+                          <i class="fas fa-lock text-xs"></i>
+                      </div>
+                      <input type="password" id="password-input" class="w-full bg-slate-50 dark:bg-zinc-800/50 border border-slate-200 dark:border-zinc-600 rounded-xl ps-9 pe-9 py-2 transition-all text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" placeholder="••••••••" required>
+                      <button type="button" id="toggle-password" class="absolute inset-y-0 end-0 pe-3 flex items-center text-slate-400 hover:text-brand transition-colors">
+                          <i class="fas fa-eye text-xs"></i>
+                      </button>
+                  </div>
+              </div>
+
+              <div class="flex items-center justify-between mt-1.5 mb-3">
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                      <div class="relative flex items-center justify-center w-3.5 h-3.5 border-2 border-slate-300 dark:border-zinc-600 rounded group-hover:border-brand transition-colors">
+                          <input type="checkbox" class="peer opacity-0 absolute inset-0 cursor-pointer w-full h-full">
+                          <i class="fas fa-check text-[9px] text-brand opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                      </div>
+                      <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400 select-none">Remember me</span>
+                  </label>
+                  <a href="#" class="text-[11px] font-bold text-brand hover:text-brand-dark hover:underline transition-colors">Forgot Password?</a>
+              </div>
+
+              <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 px-4 rounded-xl shadow-lg shadow-brand/30 transition-all hover:-translate-y-0.5 text-xs mt-1">
+                  Log In
+              </button>
+          </form>
+
+          <p class="text-center mt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+              Don't have an account yet? 
+              <a href="contact.html" class="text-brand font-bold hover:text-brand-dark hover:underline ms-1 transition-colors">Contact sales</a>
+          </p>
+      </div>
+
+      <!-- IMAGE SIDE -->
+      <div class="hidden md:flex md:w-1/2 relative bg-brand p-8 text-white flex-col justify-end overflow-hidden">
+          <div class="absolute inset-0">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Global Supply Chain" class="w-full h-full object-cover opacity-50 mix-blend-overlay hover:scale-105 transition-transform duration-1000">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90"></div>
+          </div>
+          <div class="relative z-10 mt-auto">
+              <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-white text-base mb-4 shadow-xl border border-white/30">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <p class="text-lg font-bold leading-snug mb-4">"ProcureCraft optimized our global manufacturing supply chain and secured our vendor transactions seamlessly."</p>
+              
+              <div class="flex items-center gap-3">
+                  <div class="flex -space-x-3">
+                      <img class="w-8 h-8 rounded-full border-2 border-slate-950 object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Client User">
+                      <img class="w-8 h-8 rounded-full border-2 border-slate-950 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Client User">
+                      <img class="w-8 h-8 rounded-full border-2 border-slate-950 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Client User">
+                  </div>
+                  <div class="text-[11px] text-slate-300 font-medium">Trusted by 1,800+ Enterprises</div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+  <script>
+      // Password toggle
+      const toggleBtn = document.getElementById('toggle-password');
+      const passInput = document.getElementById('password-input');
+      
+      if(toggleBtn && passInput) {
+          toggleBtn.addEventListener('click', () => {
+              if (passInput.type === 'password') {
+                  passInput.type = 'text';
+                  toggleBtn.innerHTML = '<i class="fas fa-eye-slash text-xs"></i>';
+              } else {
+                  passInput.type = 'password';
+                  toggleBtn.innerHTML = '<i class="fas fa-eye text-xs"></i>';
+              }
+          });
+      }
+
+      // Theme logic
+      const html = document.documentElement;
+      const themeBtn = document.getElementById('darkToggleBtn');
+      const savedTheme = localStorage.getItem('theme') || 'light';
+
+      const setDarkMode = (isDark) => {
+        if (isDark) {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        if(themeBtn) themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-sun text-sm"></i>' : '<i class="fa-solid fa-moon text-sm"></i>';
+      };
+
+      if (savedTheme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setDarkMode(true);
+      } else {
+        setDarkMode(false);
+      }
+
+      if(themeBtn) {
+        themeBtn.addEventListener('click', () => setDarkMode(!html.classList.contains('dark')));
+      }
+  
+      // RTL Logic
+      const rtlBtn = document.getElementById('rtlToggleBtn'); 
+      const currentDir = localStorage.getItem('dir') || 'ltr';
+      
+      const setRTL = (isRTL) => {
+        html.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+        if(rtlBtn) rtlBtn.textContent = isRTL ? 'LTR' : 'RTL';
+      };
+      
+      if (currentDir === 'rtl') setRTL(true);
+      
+      if (rtlBtn) {
+          rtlBtn.addEventListener('click', () => setRTL(html.getAttribute('dir') !== 'rtl'));
+      }
+  </script>
+</body>
+</html>
